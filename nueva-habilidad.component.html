@@ -1,0 +1,100 @@
+<form [formGroup]="newHabilidadForm" (ngSubmit)="registerHabilidad()" class="card">
+
+	<div class="card-header">
+
+		<h5>Nuevas habilidades</h5>
+
+	</div>
+
+	<div class="card-body">
+
+		<div class="form-group">
+
+			<label for="titulo">Categoría:</label>
+
+			<input type="text" class="form-control" formControlName="categoria" id="categoria" />
+
+		</div>
+
+		<button type="button" (click)="addHabilidad()" class="btn btn-secondary mt-3 mb-2">Añadir habilidad</button>
+
+		<div formArrayName="habilidades">
+
+			<div *ngFor="let habilidadForm of habilidades.controls; let i = index" class="form-group">
+
+				<div [formGroup]="habilidadForm" class="row">
+					
+					<hr class="mt-2" />
+
+					<div class="col-3">
+
+						<a (click)="deleteHabilidad(i)">
+							
+							<i class="fa-solid fa-trash" style="color: rgb(13, 110, 253); cursor: pointer"></i>
+						
+						</a>
+
+						<label for="name">Habilidad:</label>
+
+						<input type="text" class="form-control" formControlName="name" id="name" />
+
+					</div>
+
+					<div class="col-3">
+
+						<label for="from">Desde:</label>
+
+						<input
+							type="number"
+							min="1998"
+							max="2078"
+							step="1"
+							value="2024"
+							class="form-control"
+							formControlName="from"
+							id="from"
+						/>
+
+					</div>
+
+					<div class="col-3">
+
+						<label for="to">Hasta:</label>
+
+						<input
+							type="number"
+							min="1998"
+							max="2078"
+							step="1"
+							value="2024"
+							class="form-control"
+							formControlName="to"
+							id="to"
+						/>
+
+					</div>
+
+					<div class="col-3">
+
+						<input type="checkbox" formControlName="tonow" id="tonow" />&nbsp;<label for="tonow">Actualidad</label>
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+	<div class="card-footer text-muted">
+
+		<button class="btn btn-secondary">Volver</button>
+
+		<button type="submit" class="btn btn-primary float-end" [disabled]="newHabilidadForm.invalid">
+			Registrar habilidades
+		</button>
+
+	</div>
+</form>
